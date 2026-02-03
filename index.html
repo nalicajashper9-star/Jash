@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You, Bubby 💜</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Comic Sans MS', cursive;
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(135deg, #c77dff, #9d4edd);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.container {
+  background: #f8edff;
+  border-radius: 25px;
+  padding: 30px 25px;
+  width: 90%;
+  max-width: 350px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  animation: pop 0.8s ease;
+}
+
+@keyframes pop {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+h1 {
+  color: #6a00f4;
+  margin-bottom: 15px;
+}
+
+.gif img {
+  width: 150px;
+  margin: 10px auto;
+}
+
+button {
+  width: 100%;
+  padding: 15px;
+  margin: 10px 0;
+  font-size: 22px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+#yes {
+  background: #2ecc71;
+  color: white;
+  font-size: 26px;
+  animation: glow 1.5s infinite;
+}
+
+@keyframes glow {
+  0%,100% { box-shadow: 0 0 0 rgba(46,204,113,0.6); }
+  50% { box-shadow: 0 0 20px rgba(46,204,113,0.9); }
+}
+
+#no {
+  background: #ff6b6b;
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.heart {
+  position: fixed;
+  top: -10px;
+  font-size: 18px;
+  animation: fall linear forwards;
+  pointer-events: none;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="gif">
+    <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="Cute couple">
+  </div>
+
+  <h1>Will you be my Valentine? 💜</h1>
+
+  <button id="yes" onclick="yes()">Yes 💖</button>
+  <button id="no">No 💔</button>
+</div>
+
+<script>
+function yes() {
+  document.body.innerHTML = `
+    <div style="
+      height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      background:linear-gradient(135deg,#c77dff,#5a189a);
+      color:white;
+      text-align:center;
+      padding:20px;
+    ">
+      <h1 style="font-size:42px;">💜 YESSS 💜</h1>
+      <p style="font-size:24px; margin-top:15px;">
+        Happy Valentine’s Day, bubby 🥰<br><br>
+        Ikaw lang ang pipiliin ko,<br>
+        araw-araw.
+      </p>
+    </div>
+  `;
+}
+
+const no = document.getElementById("no");
+no.addEventListener("mouseover", () => {
+  const x = Math.random() * 120 - 60;
+  const y = Math.random() * 120 - 60;
+  no.style.transform = `translate(${x}px, ${y}px)`;
+});
+
+setInterval(() => {
+  if (document.querySelectorAll('.heart').length > 20) return;
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "💜";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 5000);
+}, 500);
+</script>
+
+</body>
+</html>
